@@ -41,10 +41,6 @@
         white-space: nowrap;
         cursor: pointer;
 
-        //&:hover {
-        //  background-color: #F3F3F3;
-        //}
-
         &.active,
         &:hover,
         &:focus {
@@ -64,7 +60,7 @@
 }
 
 .smm-header {
-  background: url('../../img/menu-bg.jpg');
+  background: url('/img/menu-bg.jpg');
   background-size: cover;
   height: 80px;
   position: fixed;

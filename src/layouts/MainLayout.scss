@@ -18,19 +18,6 @@
     display: flex;
     padding: 0 15px;
 
-    //@media (min-width: $screen-mobile-min) {
-    //  padding: 0 40px 30px;
-    //  min-height: calc(100vh - 159px);
-    //}
-    //
-    //@media (max-width: $screen-mobile-max) and (min-width: $screen-sm-min) {
-    //  padding: 0 40px 30px;
-    //}
-    //
-    //@media (max-width: $screen-xs-max)  {
-    //  padding: 0 15px 30px;
-    //}
-
     @include media-breakpoint-up(xl) {
       padding-left: 0;
     }
@@ -39,14 +26,6 @@
       padding: 0 40px;
     }
   }
-
-  //#main > * {
-  //  display: block;
-  //
-  //  @media (min-width: $screen-mobile-min) {
-  //    padding-left: calc(#{$sidebar-left-width} - 40px);
-  //  }
-  //}
 
   .main {
     flex: 1 1 auto;
