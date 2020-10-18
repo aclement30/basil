@@ -1,0 +1,1 @@
+export type VoiceAssistantState = false | 'waiting' | 'listening' | 'speaking'

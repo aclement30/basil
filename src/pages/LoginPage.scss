@@ -1,0 +1,17 @@
+@import '../styles/partials/variables';
+
+.LoginPage {
+  padding: 20px 30px 30px;
+  background-color: white;
+  color: $text-color;
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .google-btn-wrapper {
+    display: flex;
+    margin: 20px auto 0;
+    justify-content: center;
+  }
+}

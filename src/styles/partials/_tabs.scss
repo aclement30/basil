@@ -1,0 +1,27 @@
+.nav-tabs {
+  .nav-link {
+    border: none;
+    position: relative;
+    color: #BBBBBB;
+    text-transform: uppercase;
+
+    &.active {
+      &:after {
+        content: "";
+        height: 2px;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        transition: all;
+        transition-duration: 250ms;
+        background: #2196F3;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.tab-content {
+  padding-top: 20px;
+}

@@ -1,0 +1,34 @@
+.WebImportTab {
+  //.form-group {
+  //  display: flex;
+  //  margin-bottom: 5px;
+  //}
+
+  //.was-validated .invalid-feedback {
+  //  display: block;
+  //}
+
+  .help-feedback {
+    margin-top: 0.25rem;
+    font-size: 80%;
+  }
+
+  .was-validated :invalid ~ .help-feedback {
+    display: none;
+  }
+
+  .form-row {
+    margin: 0;
+    align-items: flex-start;
+
+    .input-wrapper {
+      flex: 1 0 auto;
+      width: auto;
+    }
+
+    button {
+      flex: 0 0 auto;
+      margin-left: 20px;
+    }
+  }
+}

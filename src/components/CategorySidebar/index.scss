@@ -1,0 +1,7 @@
+@import '../../styles/partials/variables';
+
+.CategorySidebar {
+  ul.menu a.active {
+    color: $brand-primary;
+  }
+}

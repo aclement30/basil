@@ -1,0 +1,114 @@
+@import '../../styles/partials/variables';
+@import '../../styles/partials/mixins';
+
+.RecipeList {
+  .action-header {
+    background-color: rgba(247, 247, 247, 0.3);
+    //@include clearfix;
+    padding: 13px 30px 12px;
+    //min-height: inherit;
+    //
+    //.dropdown {
+    //  float: left;
+    //}
+    //
+    //button {
+    //  font-size: 16px;
+    //
+    //  .zmdi {
+    //    font-size: 16px !important;
+    //    margin-top: 4px !important;
+    //  }
+    //}
+
+    //.btn-group {
+    //  box-shadow: none;
+    //  display: block;
+    //}
+
+    .dropdown button {
+      background-color: transparent;
+      font-size: 16px;
+      box-shadow: none;
+
+      &:focus {
+        background-color: transparent;
+        outline: none;
+      }
+    }
+
+    button.btn-secondary {
+      background-color: transparent;
+      font-size: 16px;
+    }
+  }
+
+  .card.recipe {
+    background-size: cover;
+    // Source: https://www.freepik.com/free-vector/sketchy-kitchen-pattern_792937.htm
+    background-image: url('../../img/default-picture.png');
+    height: 200px;
+    cursor: pointer;
+
+    .card-header {
+      padding: 12px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+
+      h2 {
+        font-size: 18px;
+        color: #fff;
+      }
+    }
+
+    &:hover {
+      &::before {
+        content: "";
+        display: block;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, .2);
+      }
+    }
+
+    &:active,
+    &:focus {
+      &::before {
+        content: "";
+        display: block;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, .3);
+      }
+    }
+  }
+
+  @media (max-width: $screen-mobile-min) {
+    > .card {
+      margin-bottom: 20px;
+    }
+
+    .card.recipe {
+      margin-bottom: 20px;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .action-header {
+      display: none;
+    }
+  }
+}
+
+.MainLayout.cookmode .RecipeList .action-header {
+  padding-bottom: 12px;
+}

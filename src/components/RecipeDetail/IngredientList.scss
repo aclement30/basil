@@ -1,0 +1,109 @@
+@import '../../styles/partials/variables';
+@import '../../styles/partials/mixins';
+
+.IngredientList {
+  h2 {
+    display: flex;
+    justify-content: space-between;
+
+    > span {
+      display: block;
+      float: left;
+      margin-top: 10px;
+    }
+  }
+
+  .multiplier button {
+    float: right;
+    color: #333 !important;
+    background-color: #fff;
+    border-radius: 2px;
+    //font-size: 14px;
+    font-weight: bold;
+
+    // Hide caret
+    &::after {
+      display: none;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: #e6e5e5;
+      border-color: #adadad;
+    }
+  }
+
+  ul.ingredients {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      font-size: 16px;
+      padding: 5px 0;
+      border-bottom: 1px solid #d7d7d7;
+      display: flex;
+      align-items: stretch;
+
+      &:last-of-type {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .checkbox {
+        width: 20px;
+        padding-right: 20px;
+        cursor: pointer;
+        margin: 2px 10px 0 0;
+        display: none;
+
+        i {
+          font-size: larger;
+          color: #adadad;
+          @extend .zmdi;
+          @extend .zmdi-square-o;
+        }
+
+        &.checked {
+          > i {
+            color: #5E5E5E;
+            @extend .zmdi-check-square;
+          }
+        }
+      }
+
+      .quantity {
+        font-weight: bold;
+        color: $brand-primary;
+        display: inline-block;
+        flex-basis: 20%;
+        margin-right: 10px;
+      }
+
+      .unit {
+        font-size: 10px;
+        font-weight: bold;
+        color: #666666;
+      }
+
+      .ingredient-name {
+        color: #333;
+        flex-basis: 80%;
+      }
+
+      .ingredient-type {
+        display: block;
+        font-size: smaller;
+        color: gray;
+      }
+
+      &.selectable {
+        cursor: pointer;
+
+        .checkbox {
+          display: block;
+        }
+      }
+    }
+  }
+}

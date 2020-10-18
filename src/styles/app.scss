@@ -1,0 +1,32 @@
+/*
+ * Load Main Bootstrap SASS files
+ */
+@import '~bootstrap/scss/bootstrap';
+
+@import 'partials/variables';
+@import 'partials/mixins';
+
+@import '~bootstrap-sweetalert/dist/sweetalert';
+@import 'vendors/material-shadows';
+
+/*
+ * Load Font
+ */
+@import 'partials/font';
+@import '~material-design-iconic-font/scss/material-design-iconic-font';
+
+@import "partials/generics";
+@import "partials/bootstrap-overrides";
+
+@import "partials/alert";
+@import "partials/base";
+@import "partials/buttons";
+@import "partials/card";
+@import "partials/dropdown";
+@import "partials/form";
+@import "partials/grid";
+@import "partials/listview";
+@import "partials/misc";
+@import "partials/tabs";
+@import 'partials/quick-actions';
+@import "partials/sweetalert-overrides";
