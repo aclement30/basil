@@ -9,7 +9,7 @@ export async function apiFetch(path: string, options: any = {}) {
     options.body = JSON.stringify(options.body)
   }
 
-  const url = new URL(path, process.env.REACT_APP_API_ENDPOINT)
+  const url = new URL(process.env.REACT_APP_API_ENDPOINT + path)
 
   if (options.params) {
     Object.keys(options.params).forEach(key => {
