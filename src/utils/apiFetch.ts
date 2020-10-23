@@ -38,7 +38,7 @@ export async function apiFetch(path: string, options: any = {}) {
       case 401: {
         const refreshToken = getRefreshToken(store.getState())
 
-        if (!refreshToken) throw new Error(response.statusText)
+        if (!refreshToken) throw new Error('Unauthorized')
 
         if (!tokenRefreshPromise) {
           tokenRefreshPromise = GoogleAuthService.refreshAccessToken(refreshToken)
