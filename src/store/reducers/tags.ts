@@ -1,6 +1,7 @@
 import { ActionWithTag, RESET_CURRENT_TAG, SET_CURRENT_TAG, SET_TAGS } from '../actions/tags'
 import { Tag } from '../../typings/Tag'
 import { sortByText } from '../../utils/sortByTitle'
+import i18n from '../../i18n'
 
 export interface TagsState {
   list: Tag[]
@@ -13,12 +14,18 @@ export const initialState: TagsState = {
 }
 
 export default function(state: TagsState = initialState, action: ActionWithTag): TagsState {
+  const language = i18n.language
+
   switch (action.type) {
     case SET_TAGS:
       return {
         ...state,
-        list: action.tags!.slice().sort(sortByText('name')),
-      };
+        list: action.tags!
+          .map(tag => ({
+            ...tag, name: tag[`name_${language}`],
+          }))
+          .sort(sortByText('name')),
+      }
 
     case SET_CURRENT_TAG: {
       return {
