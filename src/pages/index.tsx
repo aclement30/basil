@@ -1,5 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Redirect, Route } from 'react-router-dom'
+import { Router } from 'react-router'
+import { Switch, Redirect, Route } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
 
 import { GoogleAuthService } from '../services/GoogleAuthService'
 import { NotificationService } from '../services/NotificationService'
@@ -14,7 +16,15 @@ import { getCurrentUser } from '../store/selectors/session'
 import store from '../store'
 import GroceriesPage from './GroceriesPage'
 
+const history = createBrowserHistory()
+
 class Root extends React.PureComponent {
+
+  constructor(props) {
+    super(props)
+
+    GoogleAuthService.init(history)
+  }
 
   async componentDidMount() {
     try {
@@ -34,7 +44,7 @@ class Root extends React.PureComponent {
 
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <Switch>
           <Route path="/login">
             <LoginPage />

@@ -1,3 +1,5 @@
+import { History } from 'history'
+
 import { apiFetch } from '../utils/apiFetch'
 import {
   resetUser,
@@ -10,32 +12,40 @@ import {
 import store from '../store'
 import { User } from '../typings/User'
 
-export const GoogleAuthService = {
+class GoogleAuthServiceKlass {
 
-  authenticateUser: async function (idToken: string): Promise<boolean> {
+  _history: History<any> | null = null
+
+  init(history: History<any>) {
+    if (this._history) throw new Error('GoogleAuthService history is already defined!')
+
+    this._history = history
+  }
+
+  async authenticateUser(idToken: string): Promise<boolean> {
     try {
-      const { accessToken, refreshToken } = await GoogleAuthService.requestAccessToken(idToken)
+      const { accessToken, refreshToken } = await this.requestAccessToken(idToken)
 
       store.dispatch(setAccessToken(accessToken))
       store.dispatch(setRefreshToken(refreshToken))
 
-      await GoogleAuthService.fetchUser()
+      await this.fetchUser()
 
       return true
     } catch (error) {
-      GoogleAuthService.clearLocalUser()
+      this.clearLocalUser()
       throw new Error(`Authentication error: ${error.message}`)
     }
-  },
+  }
 
-  requestAccessToken: function (idToken: string): Promise<{ accessToken: string, refreshToken: string }> {
+  requestAccessToken(idToken: string): Promise<{ accessToken: string, refreshToken: string }> {
     return apiFetch('/access_token', {
       method: 'POST',
       body: { provider: 'google', idToken }
     })
-  },
+  }
 
-  refreshAccessToken: async function (token: string): Promise<boolean> {
+  async refreshAccessToken(token: string): Promise<boolean> {
     try {
       const { accessToken, refreshToken } = await apiFetch('/refresh_token', {
         method: 'POST',
@@ -45,16 +55,16 @@ export const GoogleAuthService = {
       store.dispatch(setAccessToken(accessToken))
       store.dispatch(setRefreshToken(refreshToken))
 
-      await GoogleAuthService.fetchUser()
+      await this.fetchUser()
 
       return true
     } catch (error) {
-      GoogleAuthService.clearLocalUser()
+      this.clearLocalUser()
       throw new Error(`Token refresh error: ${error.message}`)
     }
-  },
+  }
 
-  fetchUser: async function (): Promise<User> {
+  async fetchUser(): Promise<User> {
     store.dispatch(startLoadingUser())
     const user: User = await apiFetch('/user')
 
@@ -62,13 +72,19 @@ export const GoogleAuthService = {
     store.dispatch(stopLoadingUser())
 
     return user
-  },
+  }
 
-  logoutUser: function () {
-    GoogleAuthService.clearLocalUser()
-  },
+  logoutUser() {
+    this.clearLocalUser()
 
-  clearLocalUser: function (): void {
+    this._history!.push('/login')
+  }
+
+  clearLocalUser(): void {
     store.dispatch(resetUser())
-  },
+  }
 }
+
+const instance = new GoogleAuthServiceKlass()
+
+export const GoogleAuthService = instance

@@ -30,8 +30,6 @@ function NavigationMenu ({ cookingRecipes, timers }: Props) {
     toggleNavigationMenu()
 
     GoogleAuthService.logoutUser()
-
-    history.push('/login')
   }, [toggleNavigationMenu, history])
 
   const hideMenu = useCallback(() => toggleNavigationMenu(false), [toggleNavigationMenu])
